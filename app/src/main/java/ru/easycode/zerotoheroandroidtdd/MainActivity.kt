@@ -26,9 +26,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val isRemovedTextView = linerLayout?.childCount == 1
+        outState.putBoolean(KEY, isRemovedTextView)
+    }
+
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        linerLayout?.removeView(textView)
+        val isRemovedTextView = savedInstanceState.getBoolean(KEY)
+        if (isRemovedTextView) {
+            linerLayout?.removeView(textView)
+        }
     }
 
     companion object {
