@@ -11,6 +11,7 @@
         android:id="@+id/countTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:freezesText="true"
         android:textSize="40sp"
         android:layout_marginEnd="15dp"
         android:text="0" />
