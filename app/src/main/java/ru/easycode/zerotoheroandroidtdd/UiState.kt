@@ -1,39 +1,24 @@
 package ru.easycode.zerotoheroandroidtdd
 
-interface UiState {
+import android.widget.Button
+import android.widget.TextView
+import java.io.Serializable
 
-    class Base(private val text: String) : UiState {
+interface UiState : Serializable {
 
-        override fun equals(other: Any?): Boolean {
-            if (this === other) return true
-            if (javaClass != other?.javaClass) return false
+    fun apply(textView: TextView?, button: Button?)
 
-            other as Base
+    data class Base(private val text: String) : UiState {
 
-            return text == other.text
+        override fun apply(textView: TextView?, button: Button?) {
+            textView?.text = text
         }
-
-        override fun hashCode(): Int {
-            return text.hashCode()
-        }
-
-        override fun toString(): String = text
     }
-    class Max(private val text: String): UiState {
+    data class Max(private val text: String): UiState {
 
-        override fun equals(other: Any?): Boolean {
-            if (this === other) return true
-            if (javaClass != other?.javaClass) return false
-
-            other as Max
-
-            return text == other.text
+        override fun apply(textView: TextView?, button: Button?) {
+            textView?.text = text
+            button?.isEnabled = false
         }
-
-        override fun hashCode(): Int {
-            return text.hashCode()
-        }
-
-        override fun toString(): String = text
     }
 }
