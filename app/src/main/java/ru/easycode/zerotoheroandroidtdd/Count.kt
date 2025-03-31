@@ -16,24 +16,21 @@ interface Count {
         }
 
         override fun initial(number: String): UiState {
-            val numeric = number.toInt()
-            if (numeric == min || numeric - step < min) return UiState.Min(numeric.toString())
-            return if (numeric + step > max || numeric == max) UiState.Max(numeric.toString())
-            else UiState.Base(numeric.toString())
+            return when(number.toInt()) {
+                min -> UiState.Min(number)
+                max -> UiState.Max(number)
+                else -> UiState.Base(number)
+            }
         }
 
         override fun increment(number: String): UiState {
             val numeric = number.toInt() + step
-            if (numeric > max) return UiState.Max(number)
-            return if (numeric + step > max || numeric == max) UiState.Max(numeric.toString())
-            else UiState.Base(numeric.toString())
+            return initial(numeric.toString())
         }
 
         override fun decrement(number: String): UiState {
             val numeric = number.toInt() - step
-            if (numeric < min) return UiState.Min(number)
-            return if (numeric == min || numeric - step < min) UiState.Min(numeric.toString())
-            else UiState.Base(numeric.toString())
+            return initial(numeric.toString())
         }
     }
 }

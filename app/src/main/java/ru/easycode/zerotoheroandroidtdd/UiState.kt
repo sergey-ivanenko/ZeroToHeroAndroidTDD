@@ -20,6 +20,7 @@ interface UiState : Serializable {
     }
 
     data class Max(private val text: String) : UiState {
+
         override fun apply(textView: TextView?,
                            decrementButton: Button?,
                            incrementButton: Button?) {
@@ -30,6 +31,7 @@ interface UiState : Serializable {
     }
 
     data class Min(private val text: String) : UiState {
+
         override fun apply(textView: TextView?,
                            decrementButton: Button?,
                            incrementButton: Button?) {
