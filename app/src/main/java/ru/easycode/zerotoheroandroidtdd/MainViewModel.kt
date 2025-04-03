@@ -8,11 +8,11 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val liveDataWrapper: LiveDataWrapper,
-                    private val repository: Repository) : ViewModel() {
+                    private val repository: Repository) : ViewModel(), ProvideLiveData {
 
     private val viewModelScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
-    fun liveData(): LiveData<UiState> = liveDataWrapper.liveData()
+    override fun liveData(): LiveData<UiState> = liveDataWrapper.liveData()
 
     fun load() {
         liveDataWrapper.update(UiState.ShowProgress)
