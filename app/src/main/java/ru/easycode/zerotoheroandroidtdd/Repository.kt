@@ -1,10 +1,8 @@
 package ru.easycode.zerotoheroandroidtdd
 
-import ru.easycode.zerotoheroandroidtdd.SimpleService
-
 interface Repository {
 
-    suspend fun load() : SimpleResponse
+    suspend fun load(): SimpleResponse
 
     class Base(private val service: SimpleService, private val url: String) : Repository {
 
