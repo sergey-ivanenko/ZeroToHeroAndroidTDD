@@ -5,6 +5,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.easycode.zerotoheroandroidtdd.SimpleService
 
 /**
  * Hint for success: use encoded true for url
@@ -19,7 +20,7 @@ class ServiceTest {
             .build()
         val service: SimpleService = retrofit.create(SimpleService::class.java)
         val actual =
-            service.fetch(url = "https://raw.githubusercontent.com/JohnnySC/ZeroToHeroAndroidTDD/task/018-clouddatasource/app/sampleresponse.json")
+            service.fetch(url = "https://raw.githubusercontent.com/sergey-ivanenko/ZeroToHeroAndroidTDD/refs/heads/task/018-clouddatasource/app/sampleresponse.json")
         val expected = SimpleResponse(text = "Hello World From Web!")
         assertEquals(expected, actual)
     }
